@@ -4,7 +4,6 @@ import './Login.css'
 import login_icon from './user.png'
 import background from './login.svg'
 import axios from 'axios'
-import {LOGIN} from '../../env';
 import {withRouter} from 'react-router-dom';
 import react from 'react';
 
@@ -25,15 +24,15 @@ class Login extends react.Component
 
   login()
   {
-    axios.post(LOGIN, { email: this.state.email, password: this.state.password }).then(res =>
-    {
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('is_authenticated', 'true')
-      this.props.history.push('/');
-    }).catch(error =>
-    {
-      this.state.show = true;
-    })
+    // axios.post(LOGIN, { email: this.state.email, password: this.state.password }).then(res =>
+    // {
+    //   localStorage.setItem('token', res.data.token)
+    //   localStorage.setItem('is_authenticated', 'true')
+    //   this.props.history.push('/');
+    // }).catch(error =>
+    // {
+    //   this.state.show = true;
+    // })
   }
 
   reset_password()
