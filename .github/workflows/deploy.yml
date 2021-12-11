@@ -16,13 +16,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy to Digitalocean
-        uses: appleboy/ssh-action@master
+        uses: fifsky/ssh-action@master
         with:
           host: ${{ secrets.SGB_SSH_HOST }}
-          key: ${{ secrets.SGB_SSH_KEY }}
-          username: ${{ secrets.SGB_SSH_USER }}
-
-          script: |
+          user: root
+          key: ${{ secrets.SGB_SSH_USER}}
+          command: |
             cd /home/sgb/react/chat-react
             git reset --hard
             git pull https://github.com/yassinebebba/chat-react.git master
@@ -31,3 +30,4 @@ jobs:
             pm2 delete chat-react
             pm2 serve --spa --port 3000 build/ --name chat-react
             echo "Successfully deployed to Digitalocean"
+
