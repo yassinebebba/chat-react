@@ -39,7 +39,11 @@ class Register extends react.Component
 
   verify()
   {
-    axios.post(VALIDATE_OTP, { phone_number: this.state.phone_number, password: this.state.password, otp: Number.parseInt(this.state.otp) }).then(res =>
+    axios.post(VALIDATE_OTP, {
+      phone_number: this.state.phone_number,
+      password: this.state.password,
+      otp: Number.parseInt(this.state.otp)
+    }).then(res =>
     {
       this.props.history.push('/login');
     }).catch(error =>
@@ -73,11 +77,11 @@ class Register extends react.Component
                 <Form.Control type='text' placeholder='OTP'
                               onChange={value => this.setState({ otp: value.target.value })}/>
               </Form.Group>
-              <Button variant='primary btn-block' className='m-1' size='lg' onClick={this.verify}>Verify & Register</Button>
+              <Button variant='primary btn-block' className='m-1' size='lg' onClick={this.verify}>Verify &
+                Register</Button>
             </Form>
-            <a href="/login">
-              <Button variant='primary btn-block' className='m-1' size='lg'>Login</Button>
-            </a>
+            <Button variant='primary btn-block' className='m-1' size='lg'
+                    onClick={() => this.props.history.push('/login')}>Login</Button>
           </Col>
           <Col lg={8} md={6} sm={12}>
             <img className='w-100' src={background} alt='background'/>

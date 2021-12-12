@@ -58,9 +58,8 @@ class Login extends react.Component
                               onChange={value => this.setState({ password: value.target.value })}/>
               </Form.Group>
               <Button variant='primary btn-block' size='lg' onClick={this.login}>Login</Button>
-              <a href="/register">
-              <Button variant='primary btn-block' className='m-1' size='lg'>Register</Button>
-              </a>
+              <Button variant='primary btn-block' className='m-1' size='lg'
+                      onClick={() => this.props.history.push('/register')}>Register</Button>
               <div className='text-left mt-3'>
                 <a href='/' onClick={this.reset_password}><small className='reset ml-2'>Reset Password</small></a>
               </div>
