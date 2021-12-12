@@ -10,7 +10,7 @@ class App extends react.Component
 {
   componentWillMount()
   {
-    // if(localStorage.getItem('is_authenticated') !== 'true') Auth.force_logout(this.props.history.push);
+    if(localStorage.getItem('is_authenticated') !== 'true') Auth.force_logout(this.props.history.push);
   }
 
   render()
