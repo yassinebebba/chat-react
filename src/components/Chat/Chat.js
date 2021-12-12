@@ -13,6 +13,8 @@ class Chat extends react.Component
       dialog: [],
       message: '',
     }
+    this.form_ref = React.createRef()
+
     this.chat_socket = null;
     this.logout = this.logout.bind(this);
     this.send = this.send.bind(this);
@@ -30,16 +32,19 @@ class Chat extends react.Component
       console.error('Chat socket closed unexpectedly');
     };
   }
+
   get_msg(e)
   {
-    console.log(this.state.dialog)
     const data = JSON.parse(e.data);
     this.state.dialog = [...this.state.dialog, data.message];
+    this.state.message = ''
     this.forceUpdate()
   }
-  send()
+
+  send(e)
   {
-    console.log(this.state.message)
+    e.preventDefault()
+    e.target[0].value = ''
     this.chat_socket.send(JSON.stringify({
       'message': this.state.message
     }));
@@ -69,13 +74,11 @@ class Chat extends react.Component
               )
             })}
           </Card.Text>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Control type="text" placeholder="Type..." onChange={(e) => this.state.message = e.target.value}/>
+          <Form onSubmit={(e) => this.send(e)}>
+            <Form.Group ref={this.form_ref} className="mb-3" controlId="formBasicPassword">
+              <Form.Control as="textarea" placeholder="Type..." onChange={(e) => this.state.message = e.target.value}/>
             </Form.Group>
-            <Button variant="primary" onClick={() => this.send()}>
-              Send
-            </Button>
+            <Button variant="primary" type='submit'>Send</Button>
           </Form>
         </Card.Body>
       </Card>
