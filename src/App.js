@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation';
 import {BrowserRouter as Router, Route, Switch, withRouter} from 'react-router-dom';
 import react from 'react';
 import Auth from './Auth';
+import Register from './components/Register/Register';
 
 
 class App extends react.Component
@@ -19,6 +20,9 @@ class App extends react.Component
         <Switch>
           <Route exact path='/login'>
             <Login/>
+          </Route>
+          <Route exact path='/register'>
+            <Register/>
           </Route>
           <Route path='/'>
             <Navigation/>

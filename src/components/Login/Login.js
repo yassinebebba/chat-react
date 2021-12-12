@@ -46,18 +46,21 @@ class Login extends react.Component
         <Row>
           <Col lg={4} md={6} sm={12} className='text-center mt-5 p-3'>
             <img className='icon-img' src={login_icon} alt='icon'/>
-            <h3>Admin Login</h3>
-            {this.state.show === true && <Alert variant='danger'>Wrong Email or password</Alert>}
+            <h3>Login</h3>
+            {this.state.show === true && <Alert variant='danger'>Wrong phone number or password</Alert>}
             <Form>
-              <Form.Group className='mb-3' controlId='formGroupEmail'>
-                <Form.Control type='email' placeholder='Enter email'
+              <Form.Group className='mb-3'>
+                <Form.Control type='text' placeholder='Enter phone number'
                               onChange={value => this.setState({ email: value.target.value })}/>
               </Form.Group>
-              <Form.Group className='mb-3' controlId='formGroupPassword'>
+              <Form.Group className='mb-3'>
                 <Form.Control type='password' placeholder='Password'
                               onChange={value => this.setState({ password: value.target.value })}/>
               </Form.Group>
               <Button variant='primary btn-block' size='lg' onClick={this.login}>Login</Button>
+              <a href="/register">
+              <Button variant='primary btn-block' className='m-1' size='lg'>Register</Button>
+              </a>
               <div className='text-left mt-3'>
                 <a href='/' onClick={this.reset_password}><small className='reset ml-2'>Reset Password</small></a>
               </div>
